@@ -3,7 +3,34 @@ package ru.netology.devices;
 public class Radio {
 
     private int currentVolume = 50;
-    private int currentChannel;
+    private int currentChannel = 0;
+    private final int minVolume = 0;
+    private final int maxVolume = 100;
+    private final int minNumberStation = 0;
+    private int maxNumberStation = 9;
+
+    public Radio() {}
+    public Radio(int countStations) {
+        if (countStations > 0) {
+            maxNumberStation = countStations - 1;
+        }
+    }
+
+    public int getMinVolume() {
+        return minVolume;
+    }
+
+    public int getMaxVolume() {
+        return maxVolume;
+    }
+
+    public int getMinNumberStation() {
+        return minNumberStation;
+    }
+
+    public int getMaxNumberStation() {
+        return maxNumberStation;
+    }
 
     public int getCurrentVolume() {
         return currentVolume;
@@ -14,36 +41,36 @@ public class Radio {
     }
 
     public void setCurrentChannel(int currentChannel) {
-        if (currentChannel >= 0 && currentChannel <= 9) {
+        if (currentChannel >= minNumberStation && currentChannel <= maxNumberStation) {
             this.currentChannel = currentChannel;
         }
     }
 
     public void increaseVolume() {
-        if (currentVolume < 100) {
+        if (currentVolume < maxVolume) {
             currentVolume++;
         }
     }
 
     public void reduceVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume--;
         }
     }
 
-    public void increaseChannel() {
-        if (currentChannel < 9) {
+    public void nextButtonPressed() {
+        if (currentChannel < maxNumberStation) {
             currentChannel++;
         } else {
-            currentChannel = 0;
+            currentChannel = minNumberStation;
         }
     }
 
-    public void reduceChannel() {
-        if (currentChannel > 0) {
+    public void prevButtonPressed() {
+        if (currentChannel > minNumberStation) {
             currentChannel--;
         } else {
-            currentChannel = 9;
+            currentChannel = maxNumberStation;
         }
     }
 }

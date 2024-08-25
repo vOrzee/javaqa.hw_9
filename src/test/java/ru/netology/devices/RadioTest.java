@@ -17,8 +17,24 @@ class RadioTest {
             "9,9",
             "10,0"
     })
-    void setCurrentChannel(int numberChanel, int expected) {
+    void setCurrentChannelDefaultConstructor(int numberChanel, int expected) {
         Radio radio = new Radio();
+        radio.setCurrentChannel(numberChanel);
+        assertEquals(expected, radio.getCurrentChannel());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0,0,0",
+            "1,-1,0",
+            "-1,1,1",
+            "25,5,5",
+            "100,98,98",
+            "100,99,99",
+            "100,100,0"
+    })
+    void setCurrentChannelCountChannelsConstructor(int countChannels, int numberChanel, int expected) {
+        Radio radio = new Radio(countChannels);
         radio.setCurrentChannel(numberChanel);
         assertEquals(expected, radio.getCurrentChannel());
     }
@@ -60,10 +76,10 @@ class RadioTest {
             "8,8",
             "3,3"
     })
-    void increaseChannel(int countRepeats, int expected) {
+    void nextButtonPressed(int countRepeats, int expected) {
         Radio radio = new Radio();
         for (int i = 0; i < countRepeats; i++) {
-            radio.increaseChannel();
+            radio.nextButtonPressed();
         }
         assertEquals(expected, radio.getCurrentChannel());
     }
@@ -78,7 +94,7 @@ class RadioTest {
     void reduceChannel(int countRepeats, int expected) {
         Radio radio = new Radio();
         for (int i = 0; i < countRepeats; i++) {
-            radio.reduceChannel();
+            radio.prevButtonPressed();
         }
         assertEquals(expected, radio.getCurrentChannel());
     }
