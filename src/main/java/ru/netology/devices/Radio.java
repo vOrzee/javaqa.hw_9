@@ -14,22 +14,36 @@ public class Radio {
     }
 
     public void setCurrentChannel(int currentChannel) {
-        //TODO
+        if (currentChannel >= 0 && currentChannel <= 9) {
+            this.currentChannel = currentChannel;
+        }
     }
 
     public void increaseVolume() {
-        //TODO
+        if (currentVolume < 100) {
+            currentVolume++;
+        }
     }
 
     public void reduceVolume() {
-        //TODO
+        if (currentVolume > 0) {
+            currentVolume--;
+        }
     }
 
     public void increaseChannel() {
-        //TODO
+        if (currentChannel < 9) {
+            currentChannel++;
+        } else {
+            currentChannel = 0;
+        }
     }
 
     public void reduceChannel() {
-        //TODO
+        if (currentChannel > 0) {
+            currentChannel--;
+        } else {
+            currentChannel = 9;
+        }
     }
 }
