@@ -1,5 +1,11 @@
 package ru.netology.devices;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter
 public class Radio {
 
     private int currentVolume = 50;
@@ -9,35 +15,10 @@ public class Radio {
     private final int minNumberStation = 0;
     private int maxNumberStation = 9;
 
-    public Radio() {}
     public Radio(int countStations) {
         if (countStations > 0) {
             maxNumberStation = countStations - 1;
         }
-    }
-
-    public int getMinVolume() {
-        return minVolume;
-    }
-
-    public int getMaxVolume() {
-        return maxVolume;
-    }
-
-    public int getMinNumberStation() {
-        return minNumberStation;
-    }
-
-    public int getMaxNumberStation() {
-        return maxNumberStation;
-    }
-
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-    public int getCurrentChannel() {
-        return currentChannel;
     }
 
     public void setCurrentChannel(int currentChannel) {
